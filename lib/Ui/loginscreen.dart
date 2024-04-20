@@ -32,7 +32,8 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: () => Get.off(Us()),
+              //onPressed: () => Get.off(Us()),
+               onPressed: () => Get.off(Uc()),
               child: const Text('Login'),
             ),
           ],
