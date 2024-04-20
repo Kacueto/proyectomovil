@@ -1,27 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:proyectomoil/Ux/loginscreen.dart';
+import 'Ui/my_app.dart';
 
 void main() {
   runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-        title: 'TextFields & Forms',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const LoginScreen(
-          key: Key('LoginScreen'),
-          email: "blank",
-          password: "blank",
-        ));
-  }
 }
