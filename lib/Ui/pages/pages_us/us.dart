@@ -26,6 +26,7 @@ class _usState extends State<us> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('us'),
+        backgroundColor: Colors.blueAccent,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -72,6 +73,7 @@ class _usState extends State<us> {
                 ElevatedButton(
                   onPressed: () {
                     // Guardar el reporte con la hora actual
+                    FocusScope.of(context).requestFocus(FocusNode());
                     String hora = DateTime.now().toString();
                     String reporteGuardado = '$hora - $reporte - $selectedCliente';
                     print(reporteGuardado);
