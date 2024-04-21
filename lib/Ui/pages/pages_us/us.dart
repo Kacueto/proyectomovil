@@ -3,14 +3,14 @@
 import 'package:flutter/material.dart';
 
 
-class Us extends StatefulWidget {
-  const Us({super.key});
+class us extends StatefulWidget {
+  const us({super.key});
 
   @override
-  State<Us> createState() => _UsState();
+  State<us> createState() => _usState();
 }
 
-class _UsState extends State<Us> {
+class _usState extends State<us> {
   List<String> clientes = [
     'Cliente 1',
     'Cliente 2',
@@ -19,13 +19,13 @@ class _UsState extends State<Us> {
 
    String selectedCliente = 'Cliente 1';
 
-  late String reporte = '';
+   String reporte = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('UssUs'),
+        title: const Text('us'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

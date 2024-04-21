@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proyectomoil/Ui/pages.dart';
+import 'package:proyectomoil/ui/pages.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/LoginScreen',
         getPages: 
         [GetPage(name: '/LoginScreen', page: () => const LoginScreen()),
-        GetPage(name: '/Uc', page: () => const Uc()),
-        GetPage(name: '/Us', page: () =>  Us())],);
+        GetPage(name: '/uc', page: () => const uc()),
+        GetPage(name: '/us', page: () =>  us())],);
   }
 }

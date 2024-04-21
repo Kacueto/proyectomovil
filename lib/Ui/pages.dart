@@ -1,4 +1,4 @@
 
-export 'package:proyectomoil/Ui/loginscreen.dart';
-export 'package:proyectomoil/Ui/pages/pages_uc/uc.dart';
-export 'package:proyectomoil/Ui/pages/pages_us/us.dart';
+export 'package:proyectomoil/ui/loginscreen.dart';
+export 'package:proyectomoil/ui/pages/pages_uc/uc.dart';
+export 'package:proyectomoil/ui/pages/pages_us/us.dart';
