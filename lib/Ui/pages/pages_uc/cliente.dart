@@ -35,7 +35,40 @@ class cliente extends StatelessWidget {
                     id = value;
                   },
                   decoration: const InputDecoration(
+                    hintText: '1',
+                  ),
+                  minLines: 1,
+                  maxLines: 8,
+                  expands: false,
+                ),
+                TextField(
+                  onChanged: (value) {
+                    id = value;
+                  },
+                  decoration: const InputDecoration(
                     hintText: 'Aitana Gonzalez',
+                  ),
+                  minLines: 1,
+                  maxLines: 8,
+                  expands: false,
+                ),
+                TextField(
+                  onChanged: (value) {
+                    id = value;
+                  },
+                  decoration: const InputDecoration(
+                    hintText: 'ag@a.com',
+                  ),
+                  minLines: 1,
+                  maxLines: 8,
+                  expands: false,
+                ),
+                TextField(
+                  onChanged: (value) {
+                    id = value;
+                  },
+                  decoration: const InputDecoration(
+                    hintText: '12345',
                   ),
                   minLines: 1,
                   maxLines: 8,
