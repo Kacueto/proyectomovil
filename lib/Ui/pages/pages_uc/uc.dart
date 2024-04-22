@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 import 'package:proyectomoil/ui/pages/controllers/controllers.dart';
 
 class uc extends StatelessWidget {
-  const uc({Key? key,})
-      : super(key: key);
+  const uc({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +33,6 @@ class uc extends StatelessWidget {
                 ),
                 scrollDirection: Axis.vertical,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      ucController.goToSupports();
-                    },
-                  ),
                   Padding(
                     padding: EdgeInsets.all(22),
                     child: SingleChildScrollView(
@@ -56,7 +52,7 @@ class uc extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.all(12),
                                 child: Container(
-                                  width: 6,
+                                  width: 330,
                                   height: 100,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.rectangle,
@@ -70,21 +66,24 @@ class uc extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(24),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      ucController.goToSupports();
+                                    },
                                     child: SelectionArea(
-                                        child: AutoSizeText(
-                                      'Soporte 1',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 18),
-                                    )),
+                                      child: AutoSizeText(
+                                        'Soporte 1',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.all(12),
                                 child: Container(
-                                  width: 6,
+                                  width: 330,
                                   height: 100,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.rectangle,
@@ -182,10 +181,7 @@ class uc extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsets.all(12),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Get.off(cliente())
-                              }
+                            child: Container(
                               width: 330,
                               height: 100,
                               decoration: BoxDecoration(

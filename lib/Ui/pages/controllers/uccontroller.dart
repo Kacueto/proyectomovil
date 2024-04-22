@@ -2,14 +2,14 @@ import 'package:get/get.dart';
 
 class UcController extends GetxController {
   void goToClients() {
-    Get.toNamed('/clientes');
+    Get.toNamed('/cliente');
   }
 
   void goToReports() {
-    Get.toNamed('/reportes');
+    Get.toNamed('/reporte');
   }
 
   void goToSupports() {
-    Get.toNamed('/soportes');
+    Get.toNamed('/soporte');
   }
 }

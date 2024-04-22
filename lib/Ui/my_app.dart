@@ -10,18 +10,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(UsController());
+    Get.put(UcController());
     Get.put(LoginController());
     return GetMaterialApp(
-        title: 'TextFields & Forms',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        initialRoute: '/LoginScreen',
-        getPages: 
-        [GetPage(name: '/LoginScreen', page: () => const LoginScreen()),
+      title: 'TextFields & Forms',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/LoginScreen',
+      getPages: [
+        GetPage(name: '/LoginScreen', page: () => const LoginScreen()),
         GetPage(name: '/uc', page: () => const uc()),
-        GetPage(name: '/us', page: () =>  us()),
-        GetPage(name: '/report', page:()=> const Report())],);
+        GetPage(name: '/us', page: () => us()),
+        GetPage(name: '/report', page: () => const Report())
+      ],
+    );
   }
 }
