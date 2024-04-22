@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:get/get.dart';
+import 'package:proyectomoil/ui/pages/controllers/controllers.dart';
 
 class uc extends StatelessWidget {
   const uc({Key? key,})
@@ -7,6 +9,7 @@ class uc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final UcController ucController = Get.find();
     return Scaffold(
       appBar: AppBar(
         title: const Text('uc'),
@@ -29,6 +32,11 @@ class uc extends StatelessWidget {
                 ),
                 scrollDirection: Axis.vertical,
                 children: [
+                  GestureDetector(
+                    onTap: () {
+                      ucController.goToSupports();
+                    },
+                  ),
                   Padding(
                     padding: EdgeInsets.all(22),
                     child: SingleChildScrollView(
@@ -174,7 +182,10 @@ class uc extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsets.all(12),
-                            child: Container(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Get.off(cliente())
+                              }
                               width: 330,
                               height: 100,
                               decoration: BoxDecoration(
