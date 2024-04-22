@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 
 
 class CustomInputField extends StatelessWidget {
@@ -11,7 +11,7 @@ class CustomInputField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool? obscureText;
   final String formProperty;
-  final Map<String, String> formValues; 
+  final TextEditingController controller;
   
 
   
@@ -24,19 +24,21 @@ class CustomInputField extends StatelessWidget {
     this.icon, 
     this.suffixIcon, 
     required this.formProperty, 
-    required this.formValues, this.keyboardType, this.obscureText,
+    this.keyboardType, 
+    this.obscureText, 
+    required this.controller,
   }) : super(key: key);
  
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       autofocus: false,
-      initialValue: '',
       textCapitalization: TextCapitalization.words,
       keyboardType:  keyboardType,
       obscureText: obscureText ?? false,
-      onChanged: (value) => formValues[formProperty] = value,
+      
       validator: (value) {
         if (value!.isEmpty) {
           return 'Please enter some text';
