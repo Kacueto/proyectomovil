@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:proyectomoil/ui/pages/controllers/controllers.dart';
 
 class us extends StatelessWidget {
@@ -11,6 +10,8 @@ class us extends StatelessWidget {
     final UsController usController = Get.find();
     final ClientesController clientesController = Get.find();
     final LoginController loginController = Get.find();
+
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('us'),
@@ -61,7 +62,7 @@ class us extends StatelessWidget {
               style: TextStyle(fontSize: 18),
             ),
             Obx(() => DropdownButton<String>(
-                  value: clientesController.selectedIdCliente.value, 
+                  value: clientesController.clientesList[0].id.toString(),
                   iconSize: 24,
                   elevation: 16,
                   style: const TextStyle(color: Colors.deepPurple),
@@ -70,15 +71,13 @@ class us extends StatelessWidget {
                     color: Colors.deepPurpleAccent,
                   ),
                   onChanged: (String? newValue) {
-                    
-                     clientesController.selectedIdCliente.value = newValue!;
-                    
+                    clientesController.clientesList[0].id = newValue!;
                   },
-                  items: clientesController.clientes.keys
-                      .map<DropdownMenuItem<String>>((String key) {
+                  items: 
+                      clientesController.clientesList.map((item){
                     return DropdownMenuItem<String>(
-                      value: key,
-                      child: Text(clientesController.clientes[key]!),
+                      value: item.id,
+                      child: Text(item.nombre),
                     );
                   }).toList(),
                 )),
@@ -106,9 +105,9 @@ class us extends StatelessWidget {
                     // Guardar el reporte con la hora actual
                     FocusScope.of(context).requestFocus(FocusNode());
                     String hora = DateTime.now().toString();
-                    String reporteGuardado =
-                        '$hora - ${usController.report.value} - ${clientesController.selectedCliente.value}';
-                    print(reporteGuardado);
+                    //String reporteGuardado =
+                       // '$hora - ${usController.report.value} - ${clientesController.selectedCliente.value}';
+                    //print(reporteGuardado);
                   },
                   child: const Text('Guardar Reporte'),
                 ),

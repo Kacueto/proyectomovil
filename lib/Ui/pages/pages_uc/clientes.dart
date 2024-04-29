@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proyectomoil/Domain/Models/cliente.dart';
 import 'package:proyectomoil/ui/pages/controllers/controllers.dart';
 
 class Clientes extends StatelessWidget {
@@ -21,16 +22,14 @@ class Clientes extends StatelessWidget {
           width: MediaQuery.of(context).size.width *
               0.92, // 80% del ancho de la pantalla
           child: Obx(() => ListView.builder(
-                itemCount: clientesController.clientes.length,
+                itemCount: clientesController.clientesList.length,
                 itemBuilder: (context, index) {
-                  String key =
-                      clientesController.clientes.keys.elementAt(index);
+                  Cliente cliente = clientesController.clientesList[index];
                   return Card(
                     child: ListTile(
                       leading: const Icon(Icons.person), // Icono de persona
 
-                      title: Text(clientesController.clientes[key] ??
-                          'Valor predeterminado'),
+                      title: Text(cliente.nombre),
                       trailing: IconButton(
                         icon: const Icon(Icons.arrow_forward),
                         onPressed: () {
@@ -48,21 +47,17 @@ class Clientes extends StatelessWidget {
                                         decoration: const InputDecoration(
                                           labelText: 'Id del cliente',
                                         ),
-                                        initialValue: key,
+                                        initialValue: cliente.id,
                                         readOnly: true,
-                                        onChanged: (value) {
-                                          key = value;
-                                        },
+                                        onChanged: (value) {},
                                       ),
                                       TextFormField(
                                         decoration: const InputDecoration(
                                           labelText: 'Nombre del cliente',
                                         ),
-                                        initialValue:
-                                            clientesController.clientes[key],
+                                        initialValue: cliente.nombre,
                                         onChanged: (value) {
-                                          clientesController
-                                              .selectedCliente.value = value;
+                                          cliente.nombre = value;
                                         },
                                       ),
                                       const SizedBox(height: 20),
@@ -70,10 +65,6 @@ class Clientes extends StatelessWidget {
                                         children: [
                                           ElevatedButton(
                                             onPressed: () {
-                                              clientesController.editCliente(
-                                                  key,
-                                                  clientesController
-                                                      .selectedCliente.value);
                                               Navigator.of(context).pop();
                                             },
                                             child: const Text('Editar'),
@@ -81,8 +72,6 @@ class Clientes extends StatelessWidget {
                                           const Spacer(),
                                           ElevatedButton(
                                             onPressed: () {
-                                              clientesController
-                                                  .deleteCliente(key);
                                               Navigator.of(context).pop();
                                             },
                                             child: const Text('Eliminar'),
@@ -126,17 +115,11 @@ class Clientes extends StatelessWidget {
                         decoration: const InputDecoration(
                           labelText: 'Nombre del cliente',
                         ),
-                        onChanged: (value) {
-                          clientesController.selectedCliente.value = value;
-                        },
+                        onChanged: (value) {},
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
-                          clientesController.addCliente(
-                              '${clientesController.clientes.length + 1}',
-                              clientesController.selectedCliente.value);
-
                           Navigator.of(context).pop();
                         },
                         child: const Text('Agregar'),

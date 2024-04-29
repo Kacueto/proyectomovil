@@ -6,7 +6,7 @@ import 'package:proyectomoil/Domain/Models/cliente.dart';
 
 class ClienteDataSource implements IClienteDataSource {
   final http.Client httpCliente;
-  final String apikey = '';
+  final String apikey = 'dHtMoW';
 
   ClienteDataSource({http.Client? httpCliente})
       : httpCliente = httpCliente ?? http.Client();
@@ -14,7 +14,7 @@ class ClienteDataSource implements IClienteDataSource {
   @override
   Future<List<Cliente>> getClientes() async {
     List<Cliente> clientes = [];
-    var request = Uri.parse(url)
+    var request = Uri.parse('https://retoolapi.dev/$apikey/data')
         .resolveUri(Uri(queryParameters: {
       "format": "json",
     }));
@@ -34,13 +34,47 @@ class ClienteDataSource implements IClienteDataSource {
     logInfo("Adding cliente $cliente");
 
     final response = await httpCliente.post(
-      Uri.parse(url),
+      Uri.parse('https://retoolapi.dev/$apikey/data'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(cliente.toJson()),
     );
     if (response.statusCode == 201) {
+      return Future.value(true);
+    } else {
+      logError("Got error code ${response.statusCode}");
+      return Future.value(false);
+    }
+  }
+
+  @override
+  Future<bool> updateCliente(Cliente cliente) async {
+    final response = await httpCliente.put(
+      Uri.parse('https://retoolapi.dev/$apikey/data/${cliente.id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(cliente.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return Future.value(true);
+    } else {
+      logError("Got error code ${response.statusCode}");
+      return Future.value(false);
+    }
+  }
+
+  @override
+  Future<bool> deleteCliente(int id) async {
+    final response = await httpCliente.delete(
+      Uri.parse('https://retoolapi.dev/$apikey/data/$id'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    logInfo("Deleting cliente with id $id status code ${response.statusCode}");
+    if (response.statusCode == 200) {
       return Future.value(true);
     } else {
       logError("Got error code ${response.statusCode}");

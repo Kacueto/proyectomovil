@@ -1,22 +1,61 @@
 import 'package:get/get.dart';
+import 'package:loggy/loggy.dart';
+import 'package:proyectomoil/Domain/Models/cliente.dart';
+
+import '../../../Domain/UseCases/clientesusecase.dart';
 
 class ClientesController extends GetxController {
-  RxMap<String, String> clientes = RxMap<String, String>({
-    '1': 'Cliente 1',
-    '2': 'Cliente 2',
-    '3': 'Cliente 3',
-  });
+  final RxList<Cliente> _clientesList = <Cliente>[].obs;
+  final ClienteUseCase clienteUseCase = Get.find();
 
-  RxString selectedCliente = 'Cliente 1'.obs;
-  RxString selectedIdCliente = '1'.obs;
+  List<Cliente> get clientesList => _clientesList;
 
-  void addCliente(String id, String nombre) {
-    clientes[id] = nombre;
+  @override
+  void onInit() {
+    getClientes();
+    super.onInit();
   }
-  void editCliente(String id, String nombre) {
-    clientes[id] = nombre;
+
+  getClientes() async {
+    logInfo('Getting clientes');
+    _clientesList.value = await clienteUseCase.getClientes();
   }
-  void deleteCliente(String id) {
-    clientes.remove(id);
+
+  
+  addCliente(Cliente cliente) async {
+    logInfo('Adding cliente $cliente');
+    await clienteUseCase.addCliente(cliente);
+    getClientes();
   }
+
+  updateCliente(Cliente cliente) async {
+    logInfo('Updating cliente $cliente');
+    await clienteUseCase.updateCliente(cliente);
+    getClientes();
+  }
+
+  void deleteCliente(int id) async {
+    logInfo('Deleting cliente $id');
+    await clienteUseCase.deleteCliente(id);
+    getClientes();
+  }
+
+  //RxString selectedCliente = 'Cliente 1'.obs;
+  //RxString selectedIdCliente = '1'.obs;
+  //RxMap<String, String> clientes = RxMap<String, String>({
+  // '1': 'Cliente 1',
+  //'2': 'Cliente 2',
+  //'3': 'Cliente 3',
+  //});
+  //void addCliente1(String id, String nombre) {
+  // clientes[id] = nombre;
+  //}
+
+  //void editCliente1(String id, String nombre) {
+  //clientes[id] = nombre;
+  //}
+
+  //void deleteCliente1(String id) {
+  //clientes.remove(id);
+  //}
 }
