@@ -11,11 +11,21 @@ class uc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UcController ucController = Get.find();
+    final LoginController loginController = Get.find();
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
         title: const Text('UcKevin'),
         backgroundColor: Colors.blueAccent,
+        actions: [
+          IconButton(
+            onPressed: () {
+              
+              loginController.logout();
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       body:  
       Padding(

@@ -1,26 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:proyectomoil/ui/pages/controllers/controllers.dart';
 
 class Soportes extends StatelessWidget {
   const Soportes({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<String> Soportes = [
-      'Soporte 1',
-      'Soporte 2',
-      'Soporte 3',
-      'Soporte 4',
-      'Soporte 5',
-      'Soporte 6',
-      'Soporte 7',
-      'Soporte 8',
-      'Soporte 9',
-      'Soporte 10',
-      'Soporte 11',
-      'Soporte 12',
-      'Soporte 13',
-      'Soporte 14'
-    ];
+    final SoportesController soportesController = Get.find();
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
@@ -33,12 +20,14 @@ class Soportes extends StatelessWidget {
           width: MediaQuery.of(context).size.width *
               0.92, // 80% del ancho de la pantalla
           child: ListView.builder(
-            itemCount: Soportes.length,
+            itemCount: soportesController.soportes.length,
             itemBuilder: (context, index) {
+              String key = soportesController.soportes.keys.elementAt(index);
+              List<String> soporte = soportesController.soportes[key]!;
               return Card(
                 child: ListTile(
                   leading: Icon(Icons.support),
-                  title: Text(Soportes[index]),
+                  title: Text(soporte[0]), // Accede al nombre del soporte
                   trailing: Icon(Icons.arrow_forward),
                 ),
               );

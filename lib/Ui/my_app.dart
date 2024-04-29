@@ -12,6 +12,8 @@ class MyApp extends StatelessWidget {
     Get.put(UsController());
     Get.put(UcController());
     Get.put(LoginController());
+    Get.put(ClientesController());
+    Get.put(SoportesController());
     return GetMaterialApp(
       title: 'TextFields & Forms',
       debugShowCheckedModeBanner: false,
@@ -23,7 +25,11 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/LoginScreen', page: () => const LoginScreen()),
         GetPage(name: '/uc', page: () => const uc()),
         GetPage(name: '/us', page: () => us()),
-        GetPage(name: '/report', page: () => const Report())
+        GetPage(name: '/report', page: () => const Report()),
+        GetPage(name:'/reporte', page: () => const Reportes()),
+        GetPage(name: '/soporte', page: () => const Soportes()),
+        GetPage(name: '/cliente', page: () => const Clientes()),  
+        
       ],
     );
   }
