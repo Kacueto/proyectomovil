@@ -1,6 +1,6 @@
 import 'package:proyectomoil/Data/Datasources/Remote/iclientedatasource.dart';
 import 'package:proyectomoil/Domain/Models/cliente.dart';
-import 'package:proyectomoil/Domain/Repositories/iclientesrepositories.dart';
+import 'package:proyectomoil/Domain/Repositories/iclientesrepository.dart';
 
 class ClienteRepository implements IClienteRepository {
   final IClienteDataSource _clienteDataSource;

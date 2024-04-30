@@ -10,6 +10,7 @@ class Clientes extends StatelessWidget {
   Widget build(BuildContext context) {
     final ClientesController clientesController = Get.find();
 
+    Cliente clienteNuevo = Cliente(id: 0, name: '');
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
@@ -29,7 +30,7 @@ class Clientes extends StatelessWidget {
                     child: ListTile(
                       leading: const Icon(Icons.person), // Icono de persona
 
-                      title: Text(cliente.nombre),
+                      title: Text(cliente.name),
                       trailing: IconButton(
                         icon: const Icon(Icons.arrow_forward),
                         onPressed: () {
@@ -47,7 +48,7 @@ class Clientes extends StatelessWidget {
                                         decoration: const InputDecoration(
                                           labelText: 'Id del cliente',
                                         ),
-                                        initialValue: cliente.id,
+                                        initialValue: cliente.id.toString(),
                                         readOnly: true,
                                         onChanged: (value) {},
                                       ),
@@ -55,9 +56,9 @@ class Clientes extends StatelessWidget {
                                         decoration: const InputDecoration(
                                           labelText: 'Nombre del cliente',
                                         ),
-                                        initialValue: cliente.nombre,
+                                        initialValue: cliente.name,
                                         onChanged: (value) {
-                                          cliente.nombre = value;
+                                          cliente.name = value;
                                         },
                                       ),
                                       const SizedBox(height: 20),
@@ -65,6 +66,8 @@ class Clientes extends StatelessWidget {
                                         children: [
                                           ElevatedButton(
                                             onPressed: () {
+                                              clientesController
+                                                  .updateCliente(cliente);
                                               Navigator.of(context).pop();
                                             },
                                             child: const Text('Editar'),
@@ -72,6 +75,8 @@ class Clientes extends StatelessWidget {
                                           const Spacer(),
                                           ElevatedButton(
                                             onPressed: () {
+                                              clientesController
+                                                  .deleteCliente(cliente.id);
                                               Navigator.of(context).pop();
                                             },
                                             child: const Text('Eliminar'),
@@ -115,11 +120,15 @@ class Clientes extends StatelessWidget {
                         decoration: const InputDecoration(
                           labelText: 'Nombre del cliente',
                         ),
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          clienteNuevo.name = value;
+                        },
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
+                          clienteNuevo.id = clientesController.firstIdEmpty();
+                          clientesController.addCliente(clienteNuevo);
                           Navigator.of(context).pop();
                         },
                         child: const Text('Agregar'),

@@ -10,7 +10,7 @@ class us extends StatelessWidget {
     final UsController usController = Get.find();
     final ClientesController clientesController = Get.find();
     final LoginController loginController = Get.find();
-
+    String idSelect = clientesController.clientesList[0].id.toString();
     
     return Scaffold(
       appBar: AppBar(
@@ -71,13 +71,13 @@ class us extends StatelessWidget {
                     color: Colors.deepPurpleAccent,
                   ),
                   onChanged: (String? newValue) {
-                    clientesController.clientesList[0].id = newValue!;
+                     idSelect = newValue!;
                   },
                   items: 
                       clientesController.clientesList.map((item){
                     return DropdownMenuItem<String>(
-                      value: item.id,
-                      child: Text(item.nombre),
+                      value: item.id.toString(),
+                      child: Text(item.name),
                     );
                   }).toList(),
                 )),

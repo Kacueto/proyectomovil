@@ -1,6 +1,6 @@
 
 import 'package:proyectomoil/Domain/Models/cliente.dart';
-import 'package:proyectomoil/Domain/Repositories/iclientesrepositories.dart';
+import 'package:proyectomoil/Domain/Repositories/iclientesrepository.dart';
 
 class ClienteUseCase {
   final IClienteRepository _clienteRepository;

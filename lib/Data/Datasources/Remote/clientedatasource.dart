@@ -6,7 +6,7 @@ import 'package:proyectomoil/Domain/Models/cliente.dart';
 
 class ClienteDataSource implements IClienteDataSource {
   final http.Client httpCliente;
-  final String apikey = 'dHtMoW';
+  final String apikey = 'AaMUiW';
 
   ClienteDataSource({http.Client? httpCliente})
       : httpCliente = httpCliente ?? http.Client();

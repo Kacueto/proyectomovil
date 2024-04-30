@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:proyectomoil/Data/Datasources/Remote/clientedatasource.dart';
 import 'package:proyectomoil/Data/Datasources/Remote/iclientedatasource.dart';
 import 'package:proyectomoil/Data/Repositories/clientesrepository.dart';
-import 'package:proyectomoil/Domain/Repositories/iclientesrepositories.dart';
+import 'package:proyectomoil/Domain/Repositories/iclientesrepository.dart';
 import 'package:proyectomoil/Domain/UseCases/clientesusecase.dart';
 import 'package:proyectomoil/ui/pages.dart';
 import 'package:proyectomoil/ui/pages/controllers/controllers.dart';

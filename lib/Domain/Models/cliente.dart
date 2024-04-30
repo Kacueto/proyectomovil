@@ -1,23 +1,23 @@
 class Cliente {
-  Cliente({required this.id, required this.nombre});
+  Cliente({required this.id, required this.name});
 
-  String id;
-  String nombre;
+  int  id;
+  String name;
 
-  String get getid => id;
-  String get getnombre => nombre;
+  int  get getid => id;
+  String get getnombre => name;
 
   factory Cliente.fromJson(Map<String, dynamic> json) {
     return Cliente(
-      id: json['id'].toString(),
-      nombre: json['name'],
+      id: json['id'],
+      name: json['name'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'nombre': nombre,
+      'name': name,
     };
   }
 }

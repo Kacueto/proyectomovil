@@ -21,7 +21,19 @@ class ClientesController extends GetxController {
     _clientesList.value = await clienteUseCase.getClientes();
   }
 
-  
+  int firstIdEmpty() {
+  List<Cliente> sortedClientes = clientesList;
+  sortedClientes.sort((a, b) => a.id.compareTo(b.id));
+
+  for (int i = 0; i < sortedClientes.length - 1; i++) {
+    if (sortedClientes[i].id + 1 != sortedClientes[i + 1].id) {
+      return sortedClientes[i].id + 1;
+    }
+  }
+
+  return sortedClientes.last.id + 1;
+}
+ 
   addCliente(Cliente cliente) async {
     logInfo('Adding cliente $cliente');
     await clienteUseCase.addCliente(cliente);
@@ -40,22 +52,4 @@ class ClientesController extends GetxController {
     getClientes();
   }
 
-  //RxString selectedCliente = 'Cliente 1'.obs;
-  //RxString selectedIdCliente = '1'.obs;
-  //RxMap<String, String> clientes = RxMap<String, String>({
-  // '1': 'Cliente 1',
-  //'2': 'Cliente 2',
-  //'3': 'Cliente 3',
-  //});
-  //void addCliente1(String id, String nombre) {
-  // clientes[id] = nombre;
-  //}
-
-  //void editCliente1(String id, String nombre) {
-  //clientes[id] = nombre;
-  //}
-
-  //void deleteCliente1(String id) {
-  //clientes.remove(id);
-  //}
 }
