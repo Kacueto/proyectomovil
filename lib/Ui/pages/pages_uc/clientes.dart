@@ -10,7 +10,7 @@ class Clientes extends StatelessWidget {
   Widget build(BuildContext context) {
     final ClientesController clientesController = Get.find();
 
-    Cliente clienteNuevo = Cliente(id: 0, name: '');
+    
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
@@ -50,7 +50,9 @@ class Clientes extends StatelessWidget {
                                         ),
                                         initialValue: cliente.id.toString(),
                                         readOnly: true,
-                                        onChanged: (value) {},
+                                        onChanged: (value) {
+                                          cliente.id = int.parse(value);
+                                        },
                                       ),
                                       TextFormField(
                                         decoration: const InputDecoration(
@@ -110,6 +112,7 @@ class Clientes extends StatelessWidget {
           showDialog(
             context: context,
             builder: (BuildContext context) {
+              Cliente clienteNuevo = Cliente(id: 0, name: '');
               return AlertDialog(
                 title: const Center(child: Text('Agregar Cliente')),
                 content: SizedBox(

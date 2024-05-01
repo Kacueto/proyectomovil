@@ -1,19 +1,51 @@
 import 'package:get/get.dart';
 
+import '../../../Domain/Models/soporte.dart';
+import '../../../Domain/UseCases/soporteusecase.dart';
+
 class SoportesController extends GetxController {
-  RxMap<String, List<String>> soportes = RxMap<String, List<String>>({
-    '1': ['Soporte 1', '1', '2'],
-    '2': ['Soporte 2', 'soporte2@example.com', 'clave2'],
-    '3': ['Soporte 3', 'soporte3@example.com', 'clave3'],
-  });
+  final RxList<Soporte> _soportesList = <Soporte>[].obs;
+  final SoporteUseCase soporteUseCase = Get.find();
+
+  List<Soporte> get soportesList => _soportesList;
+
+  @override
+  void onInit() {
+    getSoportes();
+    super.onInit();
+  }
+
+  getSoportes() async {
+    _soportesList.value = await soporteUseCase.getSoportes();
+  }
+
+  int firstIdEmpty() {
+    List<Soporte> sortedSoportes = soportesList;
+    sortedSoportes.sort((a, b) => a.id.compareTo(b.id));
+
+    for (int i = 0; i < sortedSoportes.length - 1; i++) {
+      if (sortedSoportes[i].id + 1 != sortedSoportes[i + 1].id) {
+        return sortedSoportes[i].id + 1;
+      }
+    }
+
+    return sortedSoportes.last.id + 1;
+  }
+
+  addSoporte(Soporte soporte) async {
+    await soporteUseCase.addSoporte(soporte);
+    getSoportes();
+  }
+
+  updateSoporte(Soporte soporte) async {
+    await soporteUseCase.updateSoporte(soporte);
+    getSoportes();
+  }
+
+  void deleteSoporte(int id) async {
+    await soporteUseCase.deleteSoporte(id);
+    getSoportes();
+  }
+
   
-  void addSoporte(String id, List<String> soporte) {
-    soportes[id] = soporte;
-  }
-  void removeSoporte(String id) {
-    soportes.remove(id);
-  }
-  void updateSoporte(String id, List<String> soporte) {
-    soportes[id] = soporte;
-  }
 }

@@ -21,7 +21,7 @@ class UsController extends GetxController {
     );
   }
 
-  void selectCliente(String newValue) {}
+  
 
   void generateReport() {}
 }

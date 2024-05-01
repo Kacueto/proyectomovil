@@ -1,10 +1,10 @@
 class Cliente {
   Cliente({required this.id, required this.name});
 
-  int  id;
+  int id;
   String name;
 
-  int  get getid => id;
+  int get getid => id;
   String get getnombre => name;
 
   factory Cliente.fromJson(Map<String, dynamic> json) {

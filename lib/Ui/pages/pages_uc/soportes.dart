@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proyectomoil/ui/pages/controllers/controllers.dart';
+import '../../../Domain/Models/soporte.dart';
 
 class Soportes extends StatelessWidget {
   const Soportes({Key? key}) : super(key: key);
@@ -20,15 +21,15 @@ class Soportes extends StatelessWidget {
             width: MediaQuery.of(context).size.width *
                 0.92, // 80% del ancho de la pantalla
             child: Obx(() => ListView.builder(
-                itemCount: soportesController.soportes.length,
+                itemCount: soportesController.soportesList.length,
                 itemBuilder: (context, index) {
-                  String key =
-                      soportesController.soportes.keys.elementAt(index);
-                  List<String> soporte = soportesController.soportes[key]!;
+                  Soporte soporte =
+                      soportesController.soportesList[index];
+                  
                   return Card(
                     child: ListTile(
                       leading: Icon(Icons.support),
-                      title: Text(soporte[0]), // Accede al nombre del soporte
+                      title: Text(soporte.name), // Accede al nombre del soporte
                       trailing: IconButton(
                         icon: Icon(Icons.arrow_forward),
                         onPressed: () {
@@ -45,37 +46,37 @@ class Soportes extends StatelessWidget {
                                         decoration: const InputDecoration(
                                           labelText: 'Id del soporte',
                                         ),
-                                        initialValue: key,
+                                        initialValue: soporte.id.toString(),
                                         readOnly: true,
                                         onChanged: (value) {
-                                          key = value;
+                                          soporte.id = int.parse(value);
                                         },
                                       ),
                                       TextFormField(
                                         decoration: const InputDecoration(
                                           labelText: 'Nombre del soporte',
                                         ),
-                                        initialValue: soporte[0],
+                                        initialValue: soporte.name,
                                         onChanged: (value) {
-                                          soporte[0] = value;
+                                          soporte.name = value;
                                         },
                                       ),
                                       TextFormField(
                                         decoration: const InputDecoration(
                                           labelText: 'Correo del soporte',
                                         ),
-                                        initialValue: soporte[1],
+                                        initialValue: soporte.email,
                                         onChanged: (value) {
-                                          soporte[1] = value;
+                                          soporte.email = value;
                                         },
                                       ),
                                       TextFormField(
                                         decoration: const InputDecoration(
                                           labelText: 'Contrasena del soporte',
                                         ),
-                                        initialValue: soporte[2],
+                                        initialValue: soporte.password.toString(),
                                         onChanged: (value) {
-                                          soporte[2] = value;
+                                          soporte.password = int.parse(value);
                                         },
                                       ),
                                       const SizedBox(height: 20),
@@ -84,7 +85,7 @@ class Soportes extends StatelessWidget {
                                           ElevatedButton(
                                             onPressed: () {
                                               soportesController
-                                                  .updateSoporte(key, soporte);
+                                                  .updateSoporte(soporte);
                                               Navigator.of(context).pop();
                                             },
                                             child: const Text('Editar'),
@@ -93,7 +94,7 @@ class Soportes extends StatelessWidget {
                                           ElevatedButton(
                                             onPressed: () {
                                               soportesController
-                                                  .removeSoporte(key);
+                                                  .deleteSoporte(soporte.id);
                                               Navigator.of(context).pop();
                                             },
                                             child: const Text('Eliminar'),
@@ -126,9 +127,7 @@ class Soportes extends StatelessWidget {
         onPressed: () {
           showDialog(context: context, builder: (BuildContext context) {
             
-            String nombre = '';
-            String correo = '';
-            String contrasena = '';
+            Soporte soportenuevo = Soporte(id: 0, name: '', email: '', password: 0);
             return AlertDialog(
               title: Center(child: Text('Agregar soporte')),
               content: SizedBox(
@@ -141,7 +140,7 @@ class Soportes extends StatelessWidget {
                         labelText: 'Nombre del soporte',
                       ),
                       onChanged: (value) {
-                        nombre = value;
+                        soportenuevo.name = value;
                       },
                     ),
                     TextFormField(
@@ -149,7 +148,7 @@ class Soportes extends StatelessWidget {
                         labelText: 'Correo del soporte',
                       ),
                       onChanged: (value) {
-                        correo = value;
+                        soportenuevo.email = value;
                       },
                     ),
                     TextFormField(
@@ -157,13 +156,14 @@ class Soportes extends StatelessWidget {
                         labelText: 'Contrasena del soporte',
                       ),
                       onChanged: (value) {
-                        contrasena = value;
+                        soportenuevo.password = int.parse(value);
                       },
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
-                        soportesController.addSoporte('${soportesController.soportes.length+1}', [nombre, correo, contrasena]);
+                        soportenuevo.id = soportesController.firstIdEmpty();
+                        soportesController.addSoporte(soportenuevo);
                         Navigator.of(context).pop();
                       },
                       child: const Text('Agregar'),
