@@ -1,6 +1,4 @@
-
 import 'package:get/get.dart';
-
 import '../../../Domain/Models/reporte.dart';
 import '../../../Domain/UseCases/reporteusecase.dart';
 
@@ -18,7 +16,9 @@ class ReporteController extends GetxController{
 
   getReportes() async {
     _reportesList.value = await reporteUseCase.getReportes();
+    _reportesList.value = _reportesList.skip(1).toList();
   }
+
 
   int firstIdEmpty() {
     List<Reporte> sortedReportes = reportesList;

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:proyectomoil/ui/pages/controllers/controllers.dart';
+
+import '../../../Domain/Models/reporte.dart';
 
 class Reportes extends StatelessWidget {
   const Reportes({Key? key}) : super(key: key);
@@ -7,7 +11,8 @@ class Reportes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-final List<String> reportes = ['Reporte 1', 'Reporte 2', 'Reporte 3', 'Reporte 4', 'Reporte 5', 'Reporte 6', 'Reporte 7', 'Reporte 8', 'Reporte 9', 'Reporte 10', 'Reporte 11', 'Reporte 12', 'Reporte 13', 'Reporte 14'];    return Scaffold(
+    ReporteController reporteController = Get.find();
+    return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
         title: const Text('Reportes'),
@@ -16,18 +21,21 @@ final List<String> reportes = ['Reporte 1', 'Reporte 2', 'Reporte 3', 'Reporte 4
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
-          itemCount: reportes.length,
+          itemCount: reporteController.reportesList.length,
           itemBuilder: (context, index) {
+            Reporte reporte = reporteController.reportesList[index];
             return Card(
               child: ListTile(
                 leading: Icon(Icons.report), // Icono de persona
-                title: Text(reportes[index]),
+                title: Text(reporte.title),
+                
                 trailing: Icon(Icons.arrow_forward), // Icono de flecha
               ),
             );
           },
         ),
       ),
+      
     );
   }
 }

@@ -7,10 +7,11 @@ class us extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UsController usController = Get.find();
+    
     final ClientesController clientesController = Get.find();
     final LoginController loginController = Get.find();
-    String idSelect = clientesController.clientesList[0].id.toString();
+    final ReporteController reporteController = Get.find();
+    
     
     return Scaffold(
       appBar: AppBar(
@@ -42,12 +43,13 @@ class us extends StatelessWidget {
                           return SizedBox(
                             height: 300,
                             child: ListView.builder(
-                              itemCount: usController.reportes.length,
+                              itemCount: reporteController.reportesList.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return ListTile(
-                                  title: Text(usController.reportes[index]),
-                                  onTap: () => usController
-                                      .goToreport(usController.reportes[index]),
+                                  title: Text(reporteController.reportesList[index].toString()),
+                                  onTap: () => {} 
+                                  //usController
+                                      //.goToreport(usController.reportes[index]),
                                 );
                               },
                             ),
@@ -71,7 +73,8 @@ class us extends StatelessWidget {
                     color: Colors.deepPurpleAccent,
                   ),
                   onChanged: (String? newValue) {
-                     idSelect = newValue!;
+                    String? idSelect;
+                    idSelect = newValue!;
                   },
                   items: 
                       clientesController.clientesList.map((item){
@@ -90,7 +93,19 @@ class us extends StatelessWidget {
               children: [
                 TextField(
                   onChanged: (value) {
-                    usController.report.value = value;
+                    //usController.report.value = value;
+                  },
+                  decoration: const InputDecoration(
+                    hintText: 'Ingrese el titulo del reporte',
+                  ),
+                  minLines: 1,
+                  maxLines: 4,
+                  expands: false,
+                ),
+                TextField(
+                  onChanged: (value) {
+
+                    //usController.report.value = value;
                   },
                   decoration: const InputDecoration(
                     hintText: 'Ingrese el reporte',

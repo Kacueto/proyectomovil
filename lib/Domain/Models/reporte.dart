@@ -1,3 +1,5 @@
+
+
 class Reporte {
   Reporte(
       {required this.id,
@@ -34,21 +36,22 @@ class Reporte {
   String get getnameSoporte => nameSoporte;
   
   factory Reporte.fromJson(Map<String, dynamic> json) {
-    return Reporte(
-      id: json['id'],
-      body: json['body'],
-      grade: json['grade'],
-      title: json['title'],
-      duration: json['duration'],
-      isGraded: json['isGraded'],
-      idCliente: json['idCliente'],
-      idSoporte: json['idSoporte'],
-      starTime: json['starTime'],
-      nameSoporte: json['nameSoporte'],
-    );
+  return Reporte(
+    id: json['id'] ?? 0,
+    body: json['body'] ?? '',
+    grade: json['grade'] ?? 0,
+    title: json['title'] ?? '',
+    duration: json['duration'] ?? 0,
+    isGraded: json['isGraded'] ?? false,
+    idCliente: json['idCliente'] ?? 0,
+    idSoporte: json['idSoporte'] ?? 0,
+    starTime: json['starTime'] ?? '',
+    nameSoporte: json['nameSoporte'] ?? '',
+  );
+}
 
   
-  }
+  
 
   Map<String, dynamic> toJson() {
     return {

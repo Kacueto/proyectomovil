@@ -5,7 +5,8 @@ import 'package:proyectomoil/Data/Datasources/Remote/ireportedatasource.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../Domain/Models/reporte.dart';
-class ReporteDataSource implements IReporteDataSource{
+
+class ReporteDataSource implements IReporteDataSource {
   final http.Client httpReporte;
   final String apikey = 'jIlCBd';
   //https://retoolapi.dev/jIlCBd/data
@@ -82,6 +83,4 @@ class ReporteDataSource implements IReporteDataSource{
       return Future.value(false);
     }
   }
-
-
 }

@@ -12,7 +12,7 @@ class Report extends StatelessWidget {
     final UsController usController = Get.find();
     return Scaffold(
       appBar: AppBar(
-        title: Text(usController.selectedReport.value),
+        title: Text("hola"),
         backgroundColor: Colors.blueAccent,
       ),
       body:  Padding(
@@ -94,7 +94,7 @@ class Report extends StatelessWidget {
               ),
               const SizedBox(height: 16),
                Text(
-                usController.report.value,
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
                 style: const TextStyle(
                   fontSize: 16,
                 ),

@@ -10,9 +10,14 @@ import 'package:proyectomoil/Domain/UseCases/soporteusecase.dart';
 import 'package:proyectomoil/ui/pages.dart';
 import 'package:proyectomoil/ui/pages/controllers/controllers.dart';
 
+import '../Data/Datasources/Remote/ireportedatasource.dart';
+import '../Data/Datasources/Remote/reportedatasource.dart';
 import '../Data/Datasources/Remote/soportedatasource.dart';
+import '../Data/Repositories/reporterepository.dart';
 import '../Data/Repositories/soporterepository.dart';
+import '../Domain/Repositories/ireporterepository.dart';
 import '../Domain/Repositories/isoportesrepository.dart';
+import '../Domain/UseCases/reporteusecase.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -24,6 +29,11 @@ class MyApp extends StatelessWidget {
     Get.put(UcController());
     Get.put(LoginController());
     
+    // getput del reporte
+    Get.put<IReporteDataSource>(ReporteDataSource());
+    Get.put<IReporteRepository>(ReporteRepository(Get.find()));
+    Get.put(ReporteUseCase(Get.find()));
+    Get.put(ReporteController());
     // getput del soporte
     Get.put<ISoporteDataSource >(SoporteDataSource());
     Get.put<ISoporteRepository>(SoporteRepository(Get.find()));
