@@ -13,7 +13,7 @@ class Reportes extends StatelessWidget {
   Widget build(BuildContext context) {
     ReporteController reporteController = Get.find();
     return Scaffold(
-      backgroundColor: Colors.grey,
+      //backgroundColor: Colors.grey,
       appBar: AppBar(
         title: const Text('Reportes'),
         backgroundColor: Colors.blueAccent,
