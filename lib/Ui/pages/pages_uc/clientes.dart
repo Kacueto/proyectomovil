@@ -12,7 +12,7 @@ class Clientes extends StatelessWidget {
 
     
     return Scaffold(
-      backgroundColor: Colors.grey,
+      //backgroundColor: Colors.grey,
       appBar: AppBar(
         title: const Text('Clientes'),
         backgroundColor: Colors.blueAccent,
