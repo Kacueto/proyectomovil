@@ -10,7 +10,7 @@ class Soportes extends StatelessWidget {
   Widget build(BuildContext context) {
     final SoportesController soportesController = Get.find();
     return Scaffold(
-      backgroundColor: Colors.grey,
+      //backgroundColor: Colors.grey,
       appBar: AppBar(
         title: const Text('Soportes'),
         backgroundColor: Colors.blueAccent,
