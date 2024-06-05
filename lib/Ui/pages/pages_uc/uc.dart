@@ -13,9 +13,9 @@ class uc extends StatelessWidget {
     final UcController ucController = Get.find();
     final LoginController loginController = Get.find();
     return Scaffold(
-      backgroundColor: Colors.grey,
+      //backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: const Text('UcKevin'),
+        title: const Text('Uc'),
         backgroundColor: Colors.blueAccent,
         actions: [
           IconButton(
